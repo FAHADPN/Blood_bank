@@ -1,14 +1,29 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .models import BloodBank
+from django.contrib.auth.models import User, auth
+from django.contrib import messages
+
 
 # Create your views here.
-def home(request):
-    return render(request,'home.html')
+def add_donor(request):
+    if request.method =='POST':
+        name = request.POST.get('name')
+        cnum = request.POST.get('cnum')
+        email = request.POST.get('email')
+        dob = request.POST.get('dob')
+        blg = request.POST.get('blg')
+        sex = request.POST.get('sex')
 
-def form(request):
-    name = request.GET["name"]
-    email = request.GET["Email"]
-    cnumber = request.GET["cnumber"]
+        BloodObj=BloodBank(name=name,cnum=cnum,email=email,dob=dob,blg=blg,sex=sex)
+        BloodObj.save()
+        return redirect('display')
+    else:
+        return render(request,'add-donor.html')
 
-    return render(request, 'results.html',{'name':name,'email':email,'cnumber':cnumber})
+def display(request):
+    
+    blood = BloodBank.objects.all()
+
+    return render(request, 'display.html',{'blood':blood})
+

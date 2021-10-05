@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+<style>
+	table,
+	th,
+	td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	}
+
+	th,
+	td {
+	padding: 20px;
+	}
+
+	th {
+	text-align: left;
+	}
+</style>
+</head>
+
+<body>
+	<h2>Hello {{user.first_name}}</h2>
+    <a href="/logout">Logout</a>
+<h3><a href="add-donor">add Doner</a></h3>
+<table style="width:100%">
+	<caption>DETAILS</caption>
+	<tr>
+	<th>Name</th>
+	<th>Contact number</th>
+	<th>Email</th>
+    <th>Date of birth</th>
+    <th>SEX</th>
+    <th>Blood Group</th>
+    <th></th>
+	</tr>
+	{% for blood in blood %}
+	<tr>
+	<td>{{blood.name}}</td>
+	<td>{{blood.email}}</td>
+	<td>{{blood.cnum}}</td>
+    <td>{{blood.dob}}</td>
+    <td>{{blood.sex}}</td>
+    <td>{{blood.blg}}</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+
+</html>

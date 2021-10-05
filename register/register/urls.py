@@ -18,6 +18,7 @@ from django.urls import path
 from django.urls.conf import include
 
 urlpatterns = [
-    path('',include('registerform.urls')),
+    path('',include('accounts.urls')),
     path('admin/', admin.site.urls),
+    path('register/',include('registerform.urls')),
 ]

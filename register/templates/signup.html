@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration form</title>
+	<style>
+		body
+{
+	margin: 0;
+	padding: 0;
+	background-color:#6abadeba;
+	font-family: 'Arial';
+}
+.register{
+		width: 382px;
+		overflow: hidden;
+		margin: auto;
+		margin: 20 0 0 450px;
+		padding: 80px;
+		background: #23463f;
+		border-radius: 15px ;
+		
+}
+h2{
+	text-align: center;
+	color: #277582;
+	padding: 20px;
+}
+h3{
+	text-align: center;
+	color: #277582;
+	padding: 20px;
+}
+
+label{
+	color: #08ffd1;
+	font-size: 17px;
+}
+#username{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+}
+#first_name{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+}
+#last_name{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+}
+
+#password1{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+	
+}
+#password2{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+	
+}
+#email{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 3px;
+	padding-left: 8px;
+}
+#log{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 17px;
+	padding-left: 7px;
+	color: blue;
+
+
+}
+#signup{
+	width: 300px;
+	height: 30px;
+	border: none;
+	border-radius: 17px;
+	padding-left: 7px;
+	color: blue;
+
+
+}
+span{
+	color: white;
+	font-size: 17px;
+}
+a{
+	float: right;
+	background-color: grey;
+}
+	</style>
+</head>
+<body>
+	<h2>Signup Page</h2><br>
+	<div class="register">
+    <form id="register" method="POST" action="signup">
+		{% csrf_token %}
+    	<label><b>First Name 
+    	</b>
+    	</label>
+    	<input type="text" name="first_name" id="first_name" placeholder="First Name">
+    	<br><br>
+		<label><b>Last Name 
+    	</b>
+    	</label>
+    	<input type="text" name="last_name" id="last_name" placeholder="Last Name">
+    	<br><br>
+		<label><b>Email Address
+    	</b>
+    	</label>
+    	<input type="email" name="email" id="email" placeholder="abc@gmail.com">
+    	<br><br>
+		<label><b>User Name 
+    	</b>
+    	</label>
+    	<input type="text" name="username" id="username" placeholder="Username">
+    	<br><br>
+        <label><b>Password 
+        </b>
+        </label>
+    	<input type="Password" name="password1" id="password1" placeholder="Password">  
+		<br><br>
+        <label><b>Confirm Password</b>
+        <br><br>
+        <input type="Password" name="password2" id="password2" placeholder="Password"> 
+        <br><br>
+		<input type="submit" name="signup" id="signup" value="Sign up">
+    	<br><br>
+		<a href="/">login</a>
+	</form> 
+</div>
+<div>
+	{% for message in messages %}
+	<h3> {{message}} </h3>
+	{% endfor %}
+</div>
+</body>
+</html>
