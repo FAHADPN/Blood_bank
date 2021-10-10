@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zzkpii+wwr7ltfso-@c&u4afp6be=uj2ghe^_45$iaub42^+35'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bloodbankfhd.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
