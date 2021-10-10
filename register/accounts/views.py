@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.http import JsonResponse
 
 # Create your views here.
 
-def signup(request):
+def user_signup(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -31,23 +32,32 @@ def signup(request):
     else:
         return render(request,'signup.html')
 
-def login(request):
-    if request.method=='POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username,password=password)
-
-        if user is not None:
-            auth.login(request,user)
-            return redirect('register/display')
-        else:
-            messages.info(request,'invalid credentials')
-            return redirect('/')
-
+def user_login(request):
+    if 'username' in request.session:
+        return redirect('display')
     else:
-        return render(request,'login.html')
+        if request.method=='POST':
+            username = request.POST['username']
+            password = request.POST['password']
 
-def logout(request):
-    auth.logout(request)
+            user = auth.authenticate(username=username,password=password)
+
+            if user is not None:
+                request.session['username']=username
+                return JsonResponse(
+                    {'success':True},
+                    safe = False
+                )
+            else:
+                return JsonResponse(
+                    {'success':False},
+                    safe=False
+                )
+
+        else:
+            return render(request,'login.html')
+
+def user_logout(request):
+    if 'username' in request.session:
+        request.session.flush()
     return redirect('/')
